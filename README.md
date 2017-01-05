@@ -4,8 +4,14 @@ Test user's bandwidth in JavaScript
 ### Create new speed tester
 ```
 var speed = UserSpeed({
-    src: 'http://host.com/some-image.jpg',
-    size: 100 // any unit of filesize you'd like. ~100Kb is most accurate gauge
+    // REQUIRED: image source url
+    src: 'http: //host.com/some-image.jpg', 
+    
+    // REQUIRED: size of the image in any unit
+    size: 100,
+    
+    // OPTIONAL [default: 4000]: interval of measurement in milliseconds
+    interval: 4000
 });
 ```
 
