@@ -1,7 +1,7 @@
 (function() {
-    window.UserSpeed = function(userFile) {
+    window.UserSpeed = function(userConfig) {
         var current = 0,
-            intvl = 4000,
+            intvl = userConfig.interval || 4000,
             onUpdate,
             over;
 
@@ -19,7 +19,7 @@
         }        
 
         var measureHandler = function(millisec) {
-            var new_kbps = (userFile.size / (millisec / 1000)).toFixed(2),
+            var new_kbps = (userConfig.size / (millisec / 1000)).toFixed(2),
                 old_kbps = current;                
             current = new_kbps;
             if(new_kbps !== old_kbps && typeof onUpdate === 'function') {
@@ -29,12 +29,12 @@
         
         // begins the looping interval
         var init = function() {
-            if(! (typeof userFile === 'object' && userFile.src && userFile.size > 0)) {
+            if(! (typeof userConfig === 'object' && userConfig.src && userConfig.size > 0)) {
                 throw 'Please provide a valid img and its size when initializing.';
             }
             
             over = setInterval(function() {        
-                timeDownload(userFile.src + '?v=' + (new Date).getTime()).then(measureHandler);
+                timeDownload(userConfig.src + '?v=' + (new Date).getTime()).then(measureHandler);
             }, intvl);
         }
             
