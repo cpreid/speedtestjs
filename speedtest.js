@@ -1,21 +1,4 @@
 (function() {
-
-    /**
-
-    Usage:
-
-    // provide an image and its size in KB
-    var speed = UserSpeed({
-        src: 'http://img.timeinc.net/time/photoessays/2008/trees/franklin_trees_01.jpg',
-        size: 206
-    });
-
-    speed.onUpdate(function(kbps) {
-        console.log((kbps * 8) + 'kbps' + ', ' + kbps + 'KBps');
-    });
-
-    **/
-
     window.UserSpeed = function(userFile) {
         var current = 0,
             intvl = 4000,
@@ -75,5 +58,4 @@
             }
         }
     }    
-
 })();
