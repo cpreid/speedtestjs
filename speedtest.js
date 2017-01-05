@@ -3,12 +3,9 @@
         var current = 0,
             intvl = 4000,
             onUpdate,
-            over,
-            dlFile = userFile || {
-                'src': 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png', 
-                'size': 13.2            
-            }
+            over;
 
+        // time the download of the 
         var timeDownload = function(file_url) {
             var loadImg = new Image,
                 start = new Date;    
@@ -22,7 +19,7 @@
         }        
 
         var measureHandler = function(millisec) {
-            var new_kbps = (dlFile.size / (millisec / 1000)).toFixed(2),
+            var new_kbps = (userFile.size / (millisec / 1000)).toFixed(2),
                 old_kbps = current;                
             current = new_kbps;
             if(new_kbps !== old_kbps && typeof onUpdate === 'function') {
@@ -30,14 +27,23 @@
             }        
         }
         
-        // initialize speed measurement
+        // begins the looping interval
         var init = function() {
+            if(! (typeof userFile === 'object' && userFile.src && userFile.size > 0)) {
+                throw 'Please provide a valid img and its size when initializing.';
+            }
+            
             over = setInterval(function() {        
-                timeDownload(dlFile.src + '?v=' + (new Date).getTime()).then(measureHandler);
+                timeDownload(userFile.src + '?v=' + (new Date).getTime()).then(measureHandler);
             }, intvl);
         }
-        
-        init();
+            
+        // initialize speed measurement
+        try {
+            init();
+        } catch(err) {
+            console.log(err);
+        }
 
         /**
         * api: 
