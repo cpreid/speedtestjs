@@ -1,17 +1,19 @@
 # speedtestjs
 Test user's bandwidth in JavaScript
 
+### Initialization config object parameters
+
+| Param      | type   | details                                  |
+|------------|--------|------------------------------------------|
+| src        | string | image source url                         |
+| size       | float  | size of the image in any unit            |
+| interval   | int    | interval of measurement in milliseconds  |
+
 ### Create new speed tester
 ```
 var speed = UserSpeed({
-    // REQUIRED: image source url
-    src: 'http: //host.com/some-image.jpg', 
-    
-    // REQUIRED: size of the image in any unit
-    size: 100,
-    
-    // OPTIONAL [default: 4000]: interval of measurement in milliseconds
-    interval: 4000
+    src: 'http: //host.com/some-image.jpg',
+    size: 100
 });
 ```
 
