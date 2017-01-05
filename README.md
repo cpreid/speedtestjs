@@ -3,11 +3,11 @@ Test user's bandwidth in JavaScript
 
 ### Initialization config object parameters
 
-| Param      | type   | details                                  |
-|------------|--------|------------------------------------------|
-| src        | string | image source url                         |
-| size       | float  | size of the image in any unit            |
-| interval   | int    | interval of measurement in milliseconds  |
+| parameter | type   | details                                            | required | default |
+|-----------|--------|----------------------------------------------------|----------|---------|
+| src       | string | image source url used for measuring request timing | yes      |         |
+| size      | float  | size of the image in any unit                      | yes      |         |
+| interval  | int    | interval of measurement in milliseconds            | no       | 4000    |
 
 ### Create new speed tester
 ```
