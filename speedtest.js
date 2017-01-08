@@ -1,8 +1,9 @@
 (function() {
     window.UserSpeed = function(userConfig) {
         var current = 0,
+            userConfig = userConfig || {},
             intvl = userConfig.interval || 4000,
-            onUpdate,
+            onUpdate = userConfig.onUpdate || false,
             over;
 
         // time the download of the 
@@ -14,6 +15,9 @@
                 loadImg.onload = function(e, t) {
                     var diff = (new Date).getTime() - start.getTime();
                     resolve(diff);
+                }
+                loadImg.onerror = function() {
+                    reject(new Error('Unable to load image: ' + loadImg.src));
                 }
             });
         }        
@@ -34,7 +38,12 @@
             }
             
             over = setInterval(function() {        
-                timeDownload(userConfig.src + '?v=' + (new Date).getTime()).then(measureHandler);
+                timeDownload(userConfig.src + '?v=' + (new Date).getTime())
+                    .then(measureHandler)
+                    .catch(function(err) { 
+                        console.log(err);
+                        clearInterval(over);
+                    })
             }, intvl);
         }
             
