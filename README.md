@@ -8,6 +8,7 @@ Test user's bandwidth in JavaScript
 | src       | string | image source url used for measuring request timing | yes      |         |
 | size      | float  | size of the image in any unit                      | yes      |         |
 | interval  | int    | interval of measurement in milliseconds            | no       | 4000    |
+| onUpdate  | fcn    | handler called each time the user's bandwidth changes            | no       |     |
 
 ### Create new speed tester
 ```
